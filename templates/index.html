@@ -1,0 +1,21 @@
+{% extends 'flask_user/_public_base.html' %}
+{% block content %}
+<head>
+<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <script src="/static/js/libs/bootstrap.min.js" ></script>
+</head>
+<br>
+<div>
+<form action="/">
+  <button type="submit" class="btn btn-dark">Index (todos)</button>
+</form>
+    <br>
+    <form action="/members">
+  <button type="submit" class="btn btn-dark">Biblioteca (users)</button>
+</form>
+    <br>
+     <form action="/admin">
+  <button type="submit" class="btn btn-dark">Nuevo Libro (admin)</button>
+</form>
+</div>
+{% endblock %}
