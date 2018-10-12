@@ -137,12 +137,11 @@ def create_app():
         libro = entities.Libro(titulo=titulo,
                              autor=autor,
                              tipo=tipo,
-                             archivo=archivo.read(),
-                               nombrearchivo=archivo.filename)
-        session = db.getSession(engine)
+                             archivo=archivo.read())
+        session = db.Session(engine)
         session.add(libro)
         session.commit()
-        return 'Libro' + archivo.filename + 'correctamente guardado!'
+        return render_template('success.html')
 
     return app
 

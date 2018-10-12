@@ -1,5 +1,4 @@
 from sqlalchemy import Column, Integer, String, Sequence, LargeBinary
-
 from database import connector
 
 class Libro(connector.Manager.Base):
@@ -8,5 +7,4 @@ class Libro(connector.Manager.Base):
     titulo = Column(String(50))
     autor = Column(String(50))
     tipo = Column(String(15))
-    nombrearchivo= Column(String(30))
     archivo = Column(LargeBinary)
