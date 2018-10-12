@@ -134,10 +134,12 @@ def create_app():
         titulo = request.form['titulo']
         autor = request.form['autor']
         tipo = request.form['tipo']
+        imagen = request.files['imagen']
         archivo = request.files['archivo']
         libro = entities.Libro(titulo=titulo,
                              autor=autor,
                              tipo=tipo,
+                             imagen=imagen.read(),
                              archivo=archivo.read())
         session = db.Session(engine)
         session.add(libro)
