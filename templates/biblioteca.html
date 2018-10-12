@@ -1,7 +1,6 @@
 {% extends 'flask_user/_public_base.html' %}
-
 {% block content %}
-
+    <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>DevExtreme Demo</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -22,9 +21,9 @@
     <link rel="dx-theme" data-theme="generic.light.compact" href="https://cdn3.devexpress.com/jslib/18.1.6/css/dx.light.compact.css" />
     <script src="https://cdn3.devexpress.com/jslib/18.1.6/js/dx.all.js"></script>
     <script src="js/underscore-1.5.1.min.js"></script>
-    <link rel="stylesheet" type ="text/css" href ="styles.css" />
-    <script src="index.js"></script>
-    <script src="data.js"></script>
+    <link rel="stylesheet" type ="text/css" href ="/static/css/style.css" />
+    <script src="/static/js/index.js"></script>
+    <script src="/static/js/data.js"></script>
 
 </head>
 
@@ -77,5 +76,5 @@
     </script>
 
 </body>
-
+    </html>
 {% endblock %}
