@@ -7,5 +7,5 @@ class Libro(connector.Manager.Base):
     titulo = Column(String(50))
     autor = Column(String(50))
     tipo = Column(String(15))
-    imagen = Column(LargeBinary)
     archivo = Column(LargeBinary)
+    imagen = Column(LargeBinary)
