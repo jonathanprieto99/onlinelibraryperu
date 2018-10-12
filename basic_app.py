@@ -5,6 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_user import current_user, login_required, roles_required, UserManager, UserMixin
 from model import entities
 from database import connector
+import json
 
 db = connector.Manager()
 engine = db.createEngine()
@@ -142,6 +143,18 @@ def create_app():
         session.add(libro)
         session.commit()
         return render_template('success.html')
+
+    @app.route('/libros', methods=['GET'])
+    @roles_required('Admin')
+    def libros():
+        db_session = db.Session(engine)
+        libros = db_session.query(entities.Libro)
+        data = []
+        for libro in libros:
+            data.append(libro)
+        return Response(json.dumps(data,
+                                   cls=connector.AlchemyEncoder),
+                        mimetype='application/json')
 
     return app
 
