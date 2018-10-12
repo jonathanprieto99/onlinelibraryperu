@@ -1,17 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'flask_user/_public_base.html' %}
+{% block content %}
 <head>
-    <meta charset="UTF-8">
-    <title>Success</title>
-    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+<link rel="stylesheet" href="/static/css/bootstrap.min.css">
     <script src="/static/js/libs/bootstrap.min.js" ></script>
 </head>
-<body>
-<div class="alert alert-primary" style="font-size: x-large; font-family: 'Arial Black'" role="alert">
-  Success!!!
-</div>
-<form action="/login">
-  <button type="submit" class="btn btn-dark">Login</button>
+<br>
+<div>
+<form action="/">
+  <button type="submit" class="btn btn-dark">Index (todos)</button>
 </form>
-</body>
-</html>
+    <br>
+    <form action="/biblioteca">
+  <button type="submit" class="btn btn-dark">Biblioteca (users)</button>
+</form>
+    <br>
+     <form action="/nuevolibro">
+  <button type="submit" class="btn btn-dark">Nuevo Libro (admin)</button>
+</form>
+    <h1>Congrats you did it!</h1>
+</div>
+{% endblock %}

@@ -1,9 +1,13 @@
 import datetime
-from flask import Flask, request, render_template_string,render_template
+from flask import Flask, request, render_template,session,Response
 from flask_babelex import Babel
 from flask_sqlalchemy import SQLAlchemy
 from flask_user import current_user, login_required, roles_required, UserManager, UserMixin
+from model import entities
+from database import connector
 
+db = connector.Manager()
+engine = db.createEngine()
 
 # Class-based application configuration
 class ConfigClass(object):
@@ -123,6 +127,22 @@ def create_app():
     @roles_required('Admin')  # Use of @roles_required decorator
     def admin_page():
         return render_template("nuevolibro.html")
+
+    @app.route('/do_submit', methods=['Post'])
+    def do_submit():
+        titulo = request.form['titulo']
+        autor = request.form['autor']
+        tipo = request.form['tipo']
+        archivo = request.files['archivo']
+        libro = entities.Libro(titulo=titulo,
+                             autor=autor,
+                             tipo=tipo,
+                             archivo=archivo.read(),
+                               nombrearchivo=archivo.filename)
+        session = db.getSession(engine)
+        session.add(libro)
+        session.commit()
+        return 'Libro' + archivo.filename + 'correctamente guardado!'
 
     return app
 
