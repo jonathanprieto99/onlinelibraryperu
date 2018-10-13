@@ -9,3 +9,7 @@ class Libro(connector.Manager.Base):
     tipo = Column(String(15))
     archivo = Column(LargeBinary)
     imagen = Column(LargeBinary)
+    nombreimagen = Column(String(200))
+    nombrearchivo = Column(String(200))
+    rutaarchivo = Column(String(200))
+    rutaimagen = Column(String(200))

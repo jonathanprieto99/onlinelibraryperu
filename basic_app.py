@@ -1,11 +1,12 @@
 import datetime
-from flask import Flask, request, render_template,session,Response
+from flask import Flask, request, render_template,session,Response,url_for
 from flask_babelex import Babel
 from flask_sqlalchemy import SQLAlchemy
 from flask_user import current_user, login_required, roles_required, UserManager, UserMixin
 from model import entities
 from database import connector
 import json
+import os
 
 db = connector.Manager()
 engine = db.createEngine()
@@ -136,15 +137,43 @@ def create_app():
         tipo = request.form['tipo']
         imagen = request.files['imagen']
         archivo = request.files['archivo']
+        nombreimagen=imagen.filename
+        nombrearchivo = archivo.filename
+        rutaimagen=os.path.abspath(nombreimagen)
+        rutaarchivo=os.path.abspath(nombrearchivo)
         libro = entities.Libro(titulo=titulo,
                              autor=autor,
                              tipo=tipo,
                              imagen=imagen.read(),
-                             archivo=archivo.read())
+                             archivo=archivo.read(),
+                             nombreimagen=nombreimagen,
+                             nombrearchivo=nombrearchivo,
+                             rutaimagen=rutaimagen,
+                             rutaarchivo=rutaarchivo)
         session = db.Session(engine)
         session.add(libro)
         session.commit()
         return render_template('success.html')
+
+    @app.route('/imagen/<id>', methods=['GET'])
+    def imagen(id):
+        db_session = db.Session(engine)
+        libros = db_session.query(entities.Libro).filter(entities.Libro.id == id)
+        data = []
+        for libro in libros:
+            data.append(libro)
+            break
+        return Response(data[0].imagen, mimetype='image/png')
+
+    @app.route('/archivo/<id>', methods=['GET'])
+    def archivo(id):
+        db_session = db.Session(engine)
+        libros = db_session.query(entities.Libro).filter(entities.Libro.id == id)
+        data = []
+        for libro in libros:
+            data.append(libro)
+            break
+        return Response(data[0].archivo, mimetype='application/pdf')
 
     @app.route('/libros', methods=['GET'])
     @roles_required('Admin')
