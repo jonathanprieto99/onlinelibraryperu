@@ -161,29 +161,24 @@ def create_app():
         return render_template('success.html')
 
     @app.route('/libro/<id>', methods=['PUT'])
+
     def update_book(id):
-        db_session = db.Session(engine)
-        libros = db_session.query(entities.Libro).filter(entities.Libro.id == id)
-        titulo = request.form['titulo']
-        autor = request.form['autor']
-        genero = request.form['genero']
-        imagen = request.files['imagen']
-        archivo = request.files['archivo']
-        nombreimagen=imagen.filename
-        nombrearchivo = archivo.filename
-        rutaimagen=os.path.abspath(nombreimagen)
-        rutaarchivo=os.path.abspath(nombrearchivo)
-        libro = entities.Libro(titulo=titulo,
-                             autor=autor,
-                             genero=genero,
-                             imagen=imagen.read(),
-                             archivo=archivo.read(),
-                             nombreimagen=nombreimagen,
-                             nombrearchivo=nombrearchivo,
-                             rutaimagen=rutaimagen,
-                             rutaarchivo=rutaarchivo)
-        session = db.Session(engine)
-        session.add(libro)
+        session = db.getSession(engine)
+        libros = session.query(entities.Libro).filter(entities.Libro.id == id)
+
+        for libro in libros:
+            libro.titulo = request.form['titulo']
+            libro.autor = request.form['autor']
+            libro.genero = request.form['genero']
+            libro.imagen = request.files['imagen']
+            libro.archivo = request.files['archivo']
+            nombreimagen=imagen.filename
+            nombrearchivo = archivo.filename
+            libro.nombreimagen=nombreimagen
+            libro.nombrearchivo = nombrearchivo
+            libro.rutaimagen=os.path.abspath(nombreimagen)
+            libro.rutaarchivo=os.path.abspath(nombrearchivo)
+            session.add(libro)
         session.commit()
         return render_template('success.html')
 
