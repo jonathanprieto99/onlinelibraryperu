@@ -1,21 +1,23 @@
-<html>
+{% extends 'flask_user/_public_base.html' %}
+{% block content %}
 
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="/static/js/libs/jquery.min.js"></script>
 <script>window.jQuery || document.write(decodeURIComponent('%3Cscript src="js/jquery.min.js"%3E%3C/script%3E'))</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr/event.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr/supplemental.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr/unresolved.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/globalize/1.1.1/globalize.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/globalize/1.1.1/globalize/message.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/globalize/1.1.1/globalize/number.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/globalize/1.1.1/globalize/currency.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/globalize/1.1.1/globalize/date.min.js"></script>
+    <script src="/static/js/libs/cldr.min.js"></script>
+    <script src="/static/js/libs/cldr/event.min.js"></script>
+    <script src="/static/js/libs/cldr/supplemental.min.js"></script>
+    <script src="/static/js/libs/cldr/unresolved.min.js"></script>
+    <script type="text/javascript" src="/static/js/libs/globalize.min.js"></script>
+    <script type="text/javascript" src="/static/js/libs/globalize/message.min.js"></script>
+    <script type="text/javascript" src="/static/js/libs/globalize/number.min.js"></script>
+    <script type="text/javascript" src="/static/js/libs/globalize/currency.min.js"></script>
+    <script type="text/javascript" src="/static/js/libs/globalize/date.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/18.1.6/css/dx.common.css" />
     <link rel="dx-theme" data-theme="generic.light" href="https://cdn3.devexpress.com/jslib/18.1.6/css/dx.light.css" />
-    <script src="https://cdn3.devexpress.com/jslib/18.1.6/js/dx.all.js"></script>
+    <script src="/static/js/libs/dx.all.js"></script>
     <script src="/static/js/libs/underscore-min.js"></script>
+    <link rel="stylesheet" type ="text/css" href ="/static/css/style.css" />
     <script src="/static/js/index.js"></script>
     <script src="/static/js/data.js"></script>
 </head>
@@ -68,5 +70,6 @@
     </script>
 
 </body>
-</html>
+{% endblock %}
+
 
