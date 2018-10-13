@@ -6,7 +6,7 @@ class Libro(connector.Manager.Base):
     id = Column(Integer, Sequence('libro_id_seq'), primary_key=True)
     titulo = Column(String(50))
     autor = Column(String(50))
-    tipo = Column(String(15))
+    tipo = Column(String(15)) #cambiar a genero
     archivo = Column(LargeBinary)
     imagen = Column(LargeBinary)
     nombreimagen = Column(String(200))
