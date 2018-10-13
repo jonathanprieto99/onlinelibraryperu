@@ -127,14 +127,19 @@ def create_app():
     # The Admin page requires an 'Admin' role.
     @app.route('/nuevolibro')
     @roles_required('Admin')  # Use of @roles_required decorator
-    def admin_page():
+    def admin_new_libro():
         return render_template("nuevolibro.html")
 
-    @app.route('/do_submit', methods=['Post'])
-    def do_submit():
+    @app.route('/actualizarlibro')
+    @roles_required('Admin')
+    def admin_updatelibro():
+        return render_template("updatelibro.hmtl")
+
+    @app.route('/libro', methods=['Post'])
+    def create_book():
         titulo = request.form['titulo']
         autor = request.form['autor']
-        tipo = request.form['tipo']
+        genero = request.form['genero']
         imagen = request.files['imagen']
         archivo = request.files['archivo']
         nombreimagen=imagen.filename
@@ -143,7 +148,34 @@ def create_app():
         rutaarchivo=os.path.abspath(nombrearchivo)
         libro = entities.Libro(titulo=titulo,
                              autor=autor,
-                             tipo=tipo,
+                             genero=genero,
+                             imagen=imagen.read(),
+                             archivo=archivo.read(),
+                             nombreimagen=nombreimagen,
+                             nombrearchivo=nombrearchivo,
+                             rutaimagen=rutaimagen,
+                             rutaarchivo=rutaarchivo)
+        session = db.Session(engine)
+        session.add(libro)
+        session.commit()
+        return render_template('success.html')
+
+    @app.route('/libro/<id>', methods=['PUT'])
+    def update_book():
+        db_session = db.getSession(engine)
+        users = db_session.query(entities.Libro).filter(entities.Libro.id == id)
+        titulo = request.form['titulo']
+        autor = request.form['autor']
+        genero = request.form['genero']
+        imagen = request.files['imagen']
+        archivo = request.files['archivo']
+        nombreimagen=imagen.filename
+        nombrearchivo = archivo.filename
+        rutaimagen=os.path.abspath(nombreimagen)
+        rutaarchivo=os.path.abspath(nombrearchivo)
+        libro = entities.Libro(titulo=titulo,
+                             autor=autor,
+                             genero=genero,
                              imagen=imagen.read(),
                              archivo=archivo.read(),
                              nombreimagen=nombreimagen,
@@ -193,4 +225,4 @@ def create_app():
 # Start development web server
 if __name__ == '__main__':
     app = create_app()
-    app.run(host='0.0.0.0', port=8080, debug=True)
+    app.run(host='localhost', port=8080, debug=True)
