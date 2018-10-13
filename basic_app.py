@@ -161,9 +161,9 @@ def create_app():
         return render_template('success.html')
 
     @app.route('/libro/<id>', methods=['PUT'])
-    def update_book():
-        db_session = db.getSession(engine)
-        users = db_session.query(entities.Libro).filter(entities.Libro.id == id)
+    def update_book(id):
+        db_session = db.Session(engine)
+        libros = db_session.query(entities.Libro).filter(entities.Libro.id == id)
         titulo = request.form['titulo']
         autor = request.form['autor']
         genero = request.form['genero']
