@@ -163,7 +163,7 @@ def create_app():
     @app.route('/libro/<id>', methods=['PUT'])
 
     def update_book(id):
-        session = db.getSession(engine)
+        session = db.Session(engine)
         libros = session.query(entities.Libro).filter(entities.Libro.id == id)
 
         for libro in libros:
