@@ -166,7 +166,6 @@ def create_app():
         return render_template('success.html')
 
     @app.route('/libro/<id>', methods=['PUT'])
-
     def update_book(id):
         session = db.Session(engine)
         libros = session.query(entities.Libro).filter(entities.Libro.id == id)
