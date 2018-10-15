@@ -121,8 +121,13 @@ def create_app():
     # The Members page is only accessible to authenticated users
     @app.route('/biblioteca')
     @login_required  # Use of @login_required decorator
-    def member_page():
+    def biblioteca():
         return render_template("biblioteca.html")
+
+    @app.route('/biblioteca2')
+    @login_required  # Use of @login_required decorator
+    def biblioteca2():
+        return render_template("biblioteca2.html")
 
     # The Admin page requires an 'Admin' role.
     @app.route('/nuevolibro')
