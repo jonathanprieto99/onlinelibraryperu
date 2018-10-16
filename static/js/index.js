@@ -1,5 +1,6 @@
 $(function(){
     var currentHouse;
+
   
     var popupOptions = {
         width: 660,
