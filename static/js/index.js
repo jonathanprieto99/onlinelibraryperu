@@ -1,16 +1,24 @@
 $(function(){
-    var currentHouse;
 
+    var data ;
+    $.getJSON( "/libros", function( datos ) {
+        data = datos;
+         $.each(data, function(index, libro) {
+
+        $(".images").append("<img width='40px' height='40px' src='/imagen/"+libro.ID+"'/>");
+    });
+    });
+    var currentlibro;
   
     var popupOptions = {
         width: 660,
         height: 540,
         contentTemplate: function() {
-            var result = $(_.template($("#property-details").html(), currentHouse));
+            var result = $(_.template($("#property-details").html(), currentlibro));
             var button = result.find("#favorites")
                 .dxButton(buttonOptions)
                 .dxButton("instance");
-            setButtonText(button, currentHouse.Favorite);
+            setButtonText(button, currentlibro.Favorite);
             return result;
         },
         showTitle: true,
@@ -24,9 +32,9 @@ $(function(){
         width: 260,
         height: 44,
         onClick: function(e) {
-            currentHouse.Favorite = !currentHouse.Favorite;
-            setButtonText(e.component, currentHouse.Favorite);
-            showToast(currentHouse.Favorite);
+            currentlibro.Favorite = !currentlibro.Favorite;
+            setButtonText(e.component, currentlibro.Favorite);
+            showToast(currentlibro.Favorite);
         }
     };
   
@@ -58,25 +66,5 @@ $(function(){
             : "Add to Favorites");
     }
   
-    $.each(houses, function(index, house) {
-        var template = $(_.template($("#property-item").html(), house));
-        
-        template.find("#popover" + house.ID)
-            .dxPopover($.extend(popoverOptions, {
-                "target": "#house" + house.ID,
-            }));
 
-        template.find(".item-content").on("dxclick", function() {
-            currentHouse = house;
-            $(".popup-property-details").remove();
-            var container = $("<div />")
-                .addClass("popup-property-details")
-                .appendTo($("#popup"));
-            var popup = container.dxPopup(popupOptions).dxPopup("instance");
-            popup.option("title", currentHouse.Address);
-            popup.show();
-        });
-
-        $(".images").append(template);
-    });
 });

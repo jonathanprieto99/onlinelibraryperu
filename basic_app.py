@@ -165,8 +165,8 @@ def create_app():
         session.commit()
         return render_template('success.html')
 
-    @app.route('/libro/<id>', methods=['PUT'])
-    def update_book(id):
+    @app.route('/libro/<ID>', methods=['PUT'])
+    def update_book(ID):
         session = db.Session(engine)
         libros = session.query(entities.Libro).filter(entities.Libro.id == id)
 
@@ -186,20 +186,20 @@ def create_app():
         session.commit()
         return render_template('success.html')
 
-    @app.route('/imagen/<id>', methods=['GET'])
-    def imagen(id):
+    @app.route('/imagen/<ID>', methods=['GET'])
+    def imagen(ID):
         db_session = db.Session(engine)
-        libros = db_session.query(entities.Libro).filter(entities.Libro.id == id)
+        libros = db_session.query(entities.Libro).filter(entities.Libro.ID == ID)
         data = []
         for libro in libros:
             data.append(libro)
             break
         return Response(data[0].imagen, mimetype='image/png')
 
-    @app.route('/archivo/<id>', methods=['GET'])
-    def archivo(id):
+    @app.route('/archivo/<ID>', methods=['GET'])
+    def archivo(ID):
         db_session = db.Session(engine)
-        libros = db_session.query(entities.Libro).filter(entities.Libro.id == id)
+        libros = db_session.query(entities.Libro).filter(entities.Libro.ID == ID)
         data = []
         for libro in libros:
             data.append(libro)
