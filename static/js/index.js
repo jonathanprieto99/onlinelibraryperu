@@ -1,15 +1,7 @@
 $(function(){
 
-    var data ;
-    $.getJSON( "/libros", function( datos ) {
-        data = datos;
-         $.each(data, function(index, libro) {
-
-        $(".images").append("<img width='40px' height='40px' src='/imagen/"+libro.ID+"'/>");
-    });
-    });
     var currentlibro;
-  
+
     var popupOptions = {
         width: 660,
         height: 540,
@@ -26,7 +18,7 @@ $(function(){
         dragEnabled: false,
         closeOnOutsideClick: true
     };
-  
+
     var buttonOptions = {
         icon: "favorites",
         width: 260,
@@ -37,7 +29,7 @@ $(function(){
             showToast(currentlibro.Favorite);
         }
     };
-  
+
     var popoverOptions = {
         showEvent: "mouseenter",
         hideEvent: "mouseleave",
@@ -49,7 +41,7 @@ $(function(){
             collision: "fit flip"
         }
     };
-    
+
     function showToast(favoriteState) {
         var message = "This item has been "
           + (favoriteState ? "added to" : "removed from")
@@ -59,12 +51,35 @@ $(function(){
             width: 450
         }, favoriteState ? "success" : "error", 2000);
     }
-  
+
     function setButtonText(button, isFav) {
         button.option("text", isFav
             ? "Remove from Favorites"
             : "Add to Favorites");
     }
-  
 
+$.getJSON( "/libros", function( datos ) {
+        data = datos;
+     $.each(data, function(index, libro) {
+        var template = $(_.template($("#property-item").html(), libro));
+
+        template.find("#popover" + libro.ID)
+            .dxPopover($.extend(popoverOptions, {
+                "target": "#house" + libro.ID,
+            }));
+
+        template.find(".item-content").on("dxclick", function() {
+            currentLibro = libro;
+            $(".popup-property-details").remove();
+            var container = $("<div />")
+                .addClass("popup-property-details")
+                .appendTo($("#popup"));
+            var popup = container.dxPopup(popupOptions).dxPopup("instance");
+            popup.option("title", currentLibro.Address);
+            popup.show();
+        });
+
+        $(".images").append(template);
+    });
 });
+    });

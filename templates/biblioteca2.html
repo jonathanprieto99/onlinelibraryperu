@@ -30,11 +30,11 @@
     <script id="property-item" type="text/html">
         <div>
             <div class="item-content">
-                <img id="house-image<%= ID %>" src="<%= rutaimagen %>" />
+                <img id="house-image<%= ID %>" src="<%= Image %>" />
                 <div class="item-options">
                     <div>
                         <div class="address"><%= Address %></div>
-                        <div class="price large-text">$<%= Globalize.formatNumber(autor, { maximumfractiondigits: 0 }) %></div>
+                        <div class="price large-text">$<%= Globalize.formatNumber(Price, { maximumfractiondigits: 0 }) %></div>
                         <div class="agent">
                             <div id="house<%= ID %>">
                                 <img src="images/icon-agent.svg">
@@ -58,12 +58,12 @@
 
     <script id="property-details" type="text/html">
         <div class="popup-property-details">
-            <div class="large-text">$<%= Globalize.formatNumber(autor, { maximumfractiondigits: 0 }) %></div>
+            <div class="large-text">$<%= Globalize.formatNumber(Price, { maximumfractiondigits: 0 }) %></div>
             <div class="opacity"><%= Address + ", " + City + ", " + State %></div>
             <div id="favorites" class="favorites"></div>
             <div class="images">
-                <img src="<%= rutaimagen %>" />
-                <img src="<%= rutaimagen.replace('.jpg', 'b.jpg') %>" />
+                <img src="<%= Image %>" />
+                <img src="<%= Image.replace('.jpg', 'b.jpg') %>" />
             </div>
             <div><%= Features %></div>
         </div>

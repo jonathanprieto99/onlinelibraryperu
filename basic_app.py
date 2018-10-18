@@ -145,21 +145,29 @@ def create_app():
         titulo = request.form['titulo']
         autor = request.form['autor']
         genero = request.form['genero']
+        descripcion= request.form['descripcion']
         imagen = request.files['imagen']
         archivo = request.files['archivo']
+        fotoautor = request.files['fotoautor']
         nombreimagen=imagen.filename
         nombrearchivo = archivo.filename
+        nombrefotoautor=fotoautor.filename
         rutaimagen=os.path.abspath(nombreimagen)
         rutaarchivo=os.path.abspath(nombrearchivo)
+        rutafotoautor=os.path.abspath(nombrefotoautor)
         libro = entities.Libro(titulo=titulo,
                              autor=autor,
                              genero=genero,
+                             descripcion=descripcion,
                              imagen=imagen.read(),
                              archivo=archivo.read(),
+                             fotoautor=fotoautor.read(),
                              nombreimagen=nombreimagen,
                              nombrearchivo=nombrearchivo,
+                             nombrefotoautor=nombrefotoautor,
                              rutaimagen=rutaimagen,
-                             rutaarchivo=rutaarchivo)
+                             rutaarchivo=rutaarchivo,
+                             rutafotoautor=rutafotoautor)
         session = db.Session(engine)
         session.add(libro)
         session.commit()
@@ -168,20 +176,25 @@ def create_app():
     @app.route('/libro/<ID>', methods=['PUT'])
     def update_book(ID):
         session = db.Session(engine)
-        libros = session.query(entities.Libro).filter(entities.Libro.id == id)
+        libros = session.query(entities.Libro).filter(entities.Libro.ID == ID)
 
         for libro in libros:
             libro.titulo = request.form['titulo']
             libro.autor = request.form['autor']
             libro.genero = request.form['genero']
+            libro.descripcion =request.form['descripcion']
             libro.imagen = request.files['imagen']
             libro.archivo = request.files['archivo']
-            nombreimagen=imagen.filename
+            libro.fotoautor = request.files['fotoautor']
+            nombreimagen = imagen.filename
             nombrearchivo = archivo.filename
+            nombrefotoautor = fotoautor.filename
             libro.nombreimagen=nombreimagen
             libro.nombrearchivo = nombrearchivo
+            libro.nombrefotoautor = nombrefotoautor
             libro.rutaimagen=os.path.abspath(nombreimagen)
             libro.rutaarchivo=os.path.abspath(nombrearchivo)
+            libro.rutafotoarchivo = os.path.abspath(nombrearchivo)
             session.add(libro)
         session.commit()
         return render_template('success.html')
@@ -205,6 +218,16 @@ def create_app():
             data.append(libro)
             break
         return Response(data[0].archivo, mimetype='application/pdf')
+
+    @app.route('/fotoautor/<ID>', methods=['GET'])
+    def fotoautor(ID):
+        db_session = db.Session(engine)
+        libros = db_session.query(entities.Libro).filter(entities.Libro.ID == ID)
+        data = []
+        for libro in libros:
+            data.append(libro)
+            break
+        return Response(data[0].fotoautor, mimetype='image/png')
 
     @app.route('/libros', methods=['GET'])
     @roles_required('Admin')
