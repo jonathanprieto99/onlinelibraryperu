@@ -37,8 +37,8 @@
                         <div class="price large-text"><%= titulo %></div>
                         <div class="agent">
                             <div id="house<%= ID %>">
-                                <img src="images/icon-agent.svg">
-                                Listing agent
+                                <img src="/static/images/autor.svg">
+                                Autor
                             </div>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
             </div>
             <div id="popover<%= ID %>">
                 <div class="agent-details">
-                    <img src="<%= rutafotoautor %>" />
+                    <img src="/fotoautor/<%= ID %>" />
                     <div>
                         <div class="name large-text">Nacionalidad: <%= nacionalidad %></div>
                         <div class="phone">Autor: <%= autor %></div>
@@ -62,7 +62,7 @@
             <div class="opacity"><%= autor %></div>
             <div id="favorites" class="favorites"></div>
             <div class="images">
-                <img src="<%= rutaimagen %>" />
+                <img src="/imagen/<%= ID %>" />
                 <img src="<%= Image.replace('.jpg', 'b.jpg') %>" />
             </div>
             <div><%= descripcion %></div>

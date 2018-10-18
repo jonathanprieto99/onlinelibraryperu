@@ -75,7 +75,7 @@ $.getJSON( "/libros", function( datos ) {
                 .addClass("popup-property-details")
                 .appendTo($("#popup"));
             var popup = container.dxPopup(popupOptions).dxPopup("instance");
-            popup.option("title", currentLibro.Address);
+            popup.option("title", currentLibro.autor);
             popup.show();
         });
 
