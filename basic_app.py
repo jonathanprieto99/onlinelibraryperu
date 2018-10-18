@@ -142,7 +142,7 @@ def create_app():
 
     @app.route('/actualizarlibro2')
     @roles_required('Admin')
-    def admin_updatelibro():
+    def admin_updatelibro2():
         return render_template("updatelibro2.html")
 
     @app.route('/libro', methods=['Post'])
