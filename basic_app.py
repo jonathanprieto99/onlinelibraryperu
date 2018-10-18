@@ -140,6 +140,11 @@ def create_app():
     def admin_updatelibro():
         return render_template("updatelibro.html")
 
+    @app.route('/actualizarlibro2')
+    @roles_required('Admin')
+    def admin_updatelibro():
+        return render_template("updatelibro2.html")
+
     @app.route('/libro', methods=['Post'])
     def create_book():
         titulo = request.form['titulo']
