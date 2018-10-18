@@ -145,6 +145,7 @@ def create_app():
         titulo = request.form['titulo']
         autor = request.form['autor']
         genero = request.form['genero']
+        nacionalidad = request.form['nacionalidad']
         descripcion= request.form['descripcion']
         imagen = request.files['imagen']
         archivo = request.files['archivo']
@@ -158,6 +159,7 @@ def create_app():
         libro = entities.Libro(titulo=titulo,
                              autor=autor,
                              genero=genero,
+                             nacionalidad=nacionalidad,
                              descripcion=descripcion,
                              imagen=imagen.read(),
                              archivo=archivo.read(),
@@ -182,6 +184,7 @@ def create_app():
             libro.titulo = request.form['titulo']
             libro.autor = request.form['autor']
             libro.genero = request.form['genero']
+            libro.nacionalidad = request.form['nacionalidad']
             libro.descripcion =request.form['descripcion']
             libro.imagen = request.files['imagen']
             libro.archivo = request.files['archivo']
@@ -199,7 +202,63 @@ def create_app():
         session.commit()
         return render_template('success.html')
 
+    @app.route('/titulo/<ID>', methods=['GET'])
+    @login_required
+    def titulo(ID):
+        db_session = db.Session(engine)
+        libros = db_session.query(entities.Libro).filter(entities.Libro.ID == ID)
+        data = []
+        for libro in libros:
+            data.append(libro)
+            break
+        return Response(data[0].titulo, mimetype='text/txt')
+
+    @app.route('/autor/<ID>', methods=['GET'])
+    @login_required
+    def autor(ID):
+        db_session = db.Session(engine)
+        libros = db_session.query(entities.Libro).filter(entities.Libro.ID == ID)
+        data = []
+        for libro in libros:
+            data.append(libro)
+            break
+        return Response(data[0].autor, mimetype='text/txt')
+
+    @app.route('/genero/<ID>', methods=['GET'])
+    @login_required
+    def genero(ID):
+        db_session = db.Session(engine)
+        libros = db_session.query(entities.Libro).filter(entities.Libro.ID == ID)
+        data = []
+        for libro in libros:
+            data.append(libro)
+            break
+        return Response(data[0].genero, mimetype='text/txt')
+
+    @app.route('/nacionalidad/<ID>', methods=['GET'])
+    @login_required
+    def nacionalidad(ID):
+        db_session = db.Session(engine)
+        libros = db_session.query(entities.Libro).filter(entities.Libro.ID == ID)
+        data = []
+        for libro in libros:
+            data.append(libro)
+            break
+        return Response(data[0].nacionalidad, mimetype='text/txt')
+
+    @app.route('/descripcion/<ID>', methods=['GET'])
+    @login_required
+    def descripcion(ID):
+        db_session = db.Session(engine)
+        libros = db_session.query(entities.Libro).filter(entities.Libro.ID == ID)
+        data = []
+        for libro in libros:
+            data.append(libro)
+            break
+        return Response(data[0].descripcion, mimetype='text/txt')
+
     @app.route('/imagen/<ID>', methods=['GET'])
+    @login_required
     def imagen(ID):
         db_session = db.Session(engine)
         libros = db_session.query(entities.Libro).filter(entities.Libro.ID == ID)
@@ -210,6 +269,7 @@ def create_app():
         return Response(data[0].imagen, mimetype='image/png')
 
     @app.route('/archivo/<ID>', methods=['GET'])
+    @login_required
     def archivo(ID):
         db_session = db.Session(engine)
         libros = db_session.query(entities.Libro).filter(entities.Libro.ID == ID)
@@ -220,6 +280,7 @@ def create_app():
         return Response(data[0].archivo, mimetype='application/pdf')
 
     @app.route('/fotoautor/<ID>', methods=['GET'])
+    @login_required
     def fotoautor(ID):
         db_session = db.Session(engine)
         libros = db_session.query(entities.Libro).filter(entities.Libro.ID == ID)
