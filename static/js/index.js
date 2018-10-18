@@ -69,13 +69,13 @@ $.getJSON( "/libros", function( datos ) {
             }));
 
         template.find(".item-content").on("dxclick", function() {
-            currentLibro = libro;
+            currentlibro = libro;
             $(".popup-property-details").remove();
             var container = $("<div />")
                 .addClass("popup-property-details")
                 .appendTo($("#popup"));
             var popup = container.dxPopup(popupOptions).dxPopup("instance");
-            popup.option("title", currentLibro.autor);
+            popup.option("title", currentlibro.autor);
             popup.show();
         });
 
