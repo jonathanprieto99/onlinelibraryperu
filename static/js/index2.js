@@ -14,11 +14,11 @@ $(function(){
         remoteOperations: true,
         columns: [{
                 dataField: "CustomerID",
-                caption: "Customer",
+                caption: "Libro",
                 validationRules: [{
                     type: "stringLength",
-                    message: "The field Customer must be a string with a maximum length of 5.",
-                    max: 5
+                    message: "The field Customer must be a string with a maximum length of 50.",
+                    max: 50
                 }],
                 lookup: {
                     dataSource: DevExpress.data.AspNet.createStore({
@@ -31,47 +31,51 @@ $(function(){
                     valueExpr: "Value",
                     displayExpr: "Text"
                 }
-            }, {
-                dataField: "OrderDate",
-                dataType: "date",
+            },{
+                dataField: "Autor",
                 validationRules: [{
-                    type: "required",
-                    message: "The OrderDate field is required."
+                    type: "stringLength",
+                    message: "The field ShipCountry must be a string with a maximum length of 50.",
+                    max: 50
                 }]
-            }, {
-                dataField: "Freight",
-                headerFilter: {
-                    groupInterval: 100
-                },
-                validationRules: [{
-                    type: "range",
-                    message: "The field Freight must be between 0 and 2000.",
-                    min: 0,
-                    max: 2000
-                }]
-            }, {
-                dataField: "ShipCountry",
+            },{
+                dataField: "Genero",
                 validationRules: [{
                     type: "stringLength",
                     message: "The field ShipCountry must be a string with a maximum length of 15.",
                     max: 15
                 }]
             }, {
-                dataField: "ShipVia",
-                caption: "Shipping Company",
-                dataType: "number",
-                lookup: {
-                    dataSource: DevExpress.data.AspNet.createStore({
-                        key: "Value",
-                        loadUrl: url + "/ShippersLookup",
-                        onBeforeSend: function(method, ajaxOptions) {
-                            ajaxOptions.xhrFields = { withCredentials: true };
-                        }
-                    }),
-                    valueExpr: "Value",
-                    displayExpr: "Text"
-                }
+                dataField: "Descripcion",
+                validationRules: [{
+                    type: "stringLength",
+                    message: "The field ShipCountry must be a string with a maximum length of 500.",
+                    max: 500
+                }]
+            }, {
+                dataField: "Archivo",
+                validationRules: [{
+                    type: "file",
+                    message: "The field ShipCountry must be a string with a maximum length of 15.",
+                    max: 15
+                }]
+            },{
+                dataField: "Imagen",
+                validationRules: [{
+                    type: "image",
+                    message: "The field ShipCountry must be a string with a maximum length of 15.",
+                    max: 15
+                }]
+            },{
+                dataField: "Foto Autor",
+                validationRules: [{
+                    type: "image",
+                    message: "The field ShipCountry must be a string with a maximum length of 15.",
+                    max: 15
+                }]
             }
+
+
         ],
         filterRow: {
             visible: true
