@@ -30,14 +30,14 @@
     <script id="property-item" type="text/html">
         <div>
             <div class="item-content">
-                <img id="house-image<%= ID %>" src='/imagen/"+libro.ID+"' />
+                <img id="house-image<%= ID %>" src="/imagen/<%= ID %>" />
                 <div class="item-options">
                     <div>
-                        <div class="address"><%= Address %></div>
-                        <div class="price large-text"><%= Price %></div>
+                        <div class="address"><%= autor %></div>
+                        <div class="price large-text"><%= titulo %></div>
                         <div class="agent">
                             <div id="house<%= ID %>">
-                                <img src=/fotoautor/"+libro.ID+"'>
+                                <img src="images/icon-agent.svg">
                                 Listing agent
                             </div>
                         </div>
@@ -46,10 +46,10 @@
             </div>
             <div id="popover<%= ID %>">
                 <div class="agent-details">
-                    <img src="<%= Agent.Picture %>" />
+                    <img src="<%= rutafotoautor %>" />
                     <div>
-                        <div class="name large-text"><%= Agent.Name %></div>
-                        <div class="phone">Tel: <%= Agent.Phone %></div>
+                        <div class="name large-text">Nacionalidad: <%= nacionalidad %></div>
+                        <div class="phone">Autor: <%= autor %></div>
                     </div>
                 </div>
             </div>
@@ -58,14 +58,14 @@
 
     <script id="property-details" type="text/html">
         <div class="popup-property-details">
-            <div class="large-text"><%= Price %></div>
-            <div class="opacity"><%= Address %></div>
+            <div class="large-text"><%= titulo %></div>
+            <div class="opacity"><%= autor %></div>
             <div id="favorites" class="favorites"></div>
             <div class="images">
-                <img src="<%= Image %>" />
+                <img src="<%= rutaimagen %>" />
                 <img src="<%= Image.replace('.jpg', 'b.jpg') %>" />
             </div>
-            <div><%= Features %></div>
+            <div><%= descripcion %></div>
         </div>
     </script>
 
