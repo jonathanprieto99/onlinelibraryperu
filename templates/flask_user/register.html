@@ -2,8 +2,9 @@
 
 {% block content %}
 {% from "flask_user/_macros.html" import render_field, render_submit_field %}
-<h1>{%trans%}Register{%endtrans%}</h1>
-
+    <br><br>
+<h1 align="center">{%trans%}Register{%endtrans%}</h1>
+<div id="main-div" class="main-center">
 <form action="" method="POST" novalidate formnovalidate class="form" role="form">
     {{ form.hidden_tag() }}
 
@@ -42,5 +43,5 @@
 
     {{ render_submit_field(form.submit, tabindex=280) }}
 </form>
-
+<div>
 {% endblock %}
