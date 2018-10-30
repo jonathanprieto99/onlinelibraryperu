@@ -113,6 +113,10 @@ def create_app():
         db.session.add(user)
         db.session.commit()
 
+
+
+
+#Aquí empieza el código en realidad
     # The Home page is accessible to anyone
     @app.route('/')
     def home_page():
@@ -145,7 +149,7 @@ def create_app():
     def admin_updatelibro2():
         return render_template("updatelibro2.html")
 
-    @app.route('/libro', methods=['Post'])
+    @app.route('/libros', methods=['Post'])
     def create_book():
         titulo = request.form['titulo']
         autor = request.form['autor']
@@ -180,32 +184,51 @@ def create_app():
         session.commit()
         return render_template('success.html')
 
-    @app.route('/libro/<ID>', methods=['PUT'])
-    def update_book(ID):
+
+
+    @app.route('/libros', methods=['PUT'])
+    def update_book():
         session = db.Session(engine)
+        ID = request.form['key']
         libros = session.query(entities.Libro).filter(entities.Libro.ID == ID)
 
+        content = json.loads(request.form['values'])
+
         for libro in libros:
-            libro.titulo = request.form['titulo']
-            libro.autor = request.form['autor']
-            libro.genero = request.form['genero']
-            libro.nacionalidad = request.form['nacionalidad']
-            libro.descripcion =request.form['descripcion']
-            libro.imagen = request.files['imagen']
-            libro.archivo = request.files['archivo']
-            libro.fotoautor = request.files['fotoautor']
-            nombreimagen = imagen.filename
-            nombrearchivo = archivo.filename
-            nombrefotoautor = fotoautor.filename
-            libro.nombreimagen=nombreimagen
-            libro.nombrearchivo = nombrearchivo
-            libro.nombrefotoautor = nombrefotoautor
-            libro.rutaimagen=os.path.abspath(nombreimagen)
-            libro.rutaarchivo=os.path.abspath(nombrearchivo)
-            libro.rutafotoarchivo = os.path.abspath(nombrearchivo)
+            if request.form['titulo']:
+                libro.titulo = request.form['titulo']
+            if request.form['autor']:
+                libro.autor = request.form['autor']
+            if request.form['genero']:
+                libro.genero = request.form['genero']
+            if request.form['nacionalidad']:
+                libro.nacionalidad = request.form['nacionalidad']
+            if request.form['descripcion']:
+                libro.descripcion = request.form['descripcion']
+            if request.form['imagen']:
+                libro.imagen = request.files['imagen']
+                nombreimagen = imagen.filename
+                libro.nombreimagen = nombreimagen
+                libro.rutaimagen=os.path.abspath(nombreimagen)
+            if request.form['archivo']:
+                libro.archivo = request.files['archivo']
+                nombrearchivo = archivo.filename
+                libro.nombrearchivo = nombrearchivo
+                libro.rutaarchivo = os.path.abspath(nombrearchivo)
+            if request.form['fotoautor']:
+                libro.fotoautor = request.files['fotoautor']
+                nombrefotoautor = fotoautor.filename
+                libro.nombrefotoautor = nombrefotoautor
+                libro.rutafotoarchivo = os.path.abspath(nombrefotoautor)
             session.add(libro)
         session.commit()
-        return render_template('success.html')
+        return 'Update exitosa'
+
+    @app.route('/actualizarconput')
+    def update_put():
+
+        return render_template('updatePut.html')
+
 
     @app.route('/titulo/<ID>', methods=['GET'])
     @login_required
