@@ -18,4 +18,4 @@ class Libro(connector.Manager.Base):
     rutaarchivo = Column(String(200))
     rutaimagen = Column(String(200))
     rutafotoautor= Column(String(200))
-    Favorite=Column(Boolean)
+    # Favorite=Column(Boolean)
