@@ -226,7 +226,6 @@ def create_app():
 
     @app.route('/actualizarconput')
     def update_put():
-
         return render_template('updatePut.html')
 
 
