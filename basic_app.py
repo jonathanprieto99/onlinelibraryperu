@@ -226,9 +226,18 @@ def create_app():
 
     @app.route('/actualizarconput')
     def update_put():
-
         return render_template('updatePut.html')
 
+
+    @app.route('/libro/<ID>', methods=['DELETE'])
+    def delete_book(ID):
+        session = db.Session(engine)
+        libros = session.query(entities.Libro).filter(entities.Libro.ID == ID)
+
+        for libro in libros:
+            session.delete(libro)
+        session.commit()
+        return 'User Deleted'
 
     @app.route('/titulo/<ID>', methods=['GET'])
     @login_required
