@@ -16,7 +16,7 @@ $(function(){
         editing: {
             allowUpdating: true,
             allowDeleting: true,
-            allowAdding: true
+            allowAdding: false
         },
         remoteOperations: {
             sorting: true,
@@ -43,8 +43,6 @@ $(function(){
             dataField: "genero"
         }, {
             dataField: "descripcion"
-        },{
-            dataField: "nombreimagen"
         }, ],
     }).dxDataGrid("instance");
 });
