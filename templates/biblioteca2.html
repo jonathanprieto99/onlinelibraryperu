@@ -11,7 +11,7 @@
     <script type="text/javascript" src="/static/js/libs/globalize/number.min.js"></script>
     <script type="text/javascript" src="/static/js/libs/globalize/currency.min.js"></script>
     <script type="text/javascript" src="/static/js/libs/globalize/date.min.js"></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/18.1.6/css/dx.common.css" />
     <link rel="dx-theme" data-theme="generic.light" href="https://cdn3.devexpress.com/jslib/18.1.6/css/dx.light.css" />
     <script src="/static/js/libs/dx.all.js"></script>
@@ -21,9 +21,9 @@
     <script src="/static/js/index.js"></script>
 </head>
 
-<body class="dx-viewport">
+<body class="dx-viewport" style="background: #ffffff url(/static/images/geometry2.png) repeat;">
 <br><br><br>
-    <div class="demo-container">
+    <div class="demo-container" >
         <div class="images"></div>
         <div id="popup"></div>
     </div>
@@ -38,7 +38,8 @@
                         <div class="price large-text"><%= titulo %></div>
                         <div class="agent">
                             <div id="house<%= ID %>">
-                                <img src="/static/images/autor.svg">
+                                <br>
+                                <i class="fa fa-user" style="font-size:24px;color:white"></i><br>
                                 Autor
                             </div>
                         </div>
@@ -58,14 +59,14 @@
     </script>
 
     <script id="property-details" type="text/html">
-        <div class="popup-property-details">
-            <div class="large-text"><%= titulo %></div>
+        <div class="popup-property-details" style="background: #ffffff url(/static/images/geometry2.png) repeat;">
+            <div class="large-text" ><%= titulo %></div>
             <div class="opacity"><%= autor %></div>
-            <div id="favorites" class="favorites"><a href="/archivo/<%= ID %>" download>Descargar</a></div>
+            <div id="favorites" class="favorites"><a href="/archivo/<%= ID %>" download><i class="fa fa-download" style="color:white"></i><span style="color:white"> Descargar</span></a></div>
             <div class="images">
                 <img src="/imagen/<%= ID %>" />
             </div>
-            <div><%= descripcion %></div>
+            <div style="color: #616a6b  "><%= descripcion %></div>
         </div>
     </script>
 

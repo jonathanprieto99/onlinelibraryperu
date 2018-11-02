@@ -195,38 +195,40 @@ def create_app():
         content = json.loads(request.form['values'])
 
         for libro in libros:
-            if request.form['titulo']:
-                libro.titulo = request.form['titulo']
-            if request.form['autor']:
-                libro.autor = request.form['autor']
-            if request.form['genero']:
-                libro.genero = request.form['genero']
-            if request.form['nacionalidad']:
-                libro.nacionalidad = request.form['nacionalidad']
-            if request.form['descripcion']:
-                libro.descripcion = request.form['descripcion']
-            if request.form['imagen']:
-                libro.imagen = request.files['imagen']
+            if 'titulo' in content:
+                libro.titulo = content['titulo']
+            if 'autor' in content:
+                libro.autor = content['autor']
+            if 'genero' in content:
+                libro.genero = content['genero']
+            if 'nacionalidad' in content:
+                libro.nacionalidad = content['nacionalidad']
+            if 'descripcion' in content:
+                libro.descripcion = content['descripcion']
+            if 'imagen' in content:
+                imagen = content['imagen']
+                libro.imagen = imagen
                 nombreimagen = imagen.filename
                 libro.nombreimagen = nombreimagen
-                libro.rutaimagen=os.path.abspath(nombreimagen)
-            if request.form['archivo']:
-                libro.archivo = request.files['archivo']
+                libro.rutaimagen = os.path.abspath(nombreimagen)
+            if 'archivo' in content:
+                archivo = content['archivo']
+                libro.archivo = archivo
                 nombrearchivo = archivo.filename
                 libro.nombrearchivo = nombrearchivo
                 libro.rutaarchivo = os.path.abspath(nombrearchivo)
-            if request.form['fotoautor']:
-                libro.fotoautor = request.files['fotoautor']
+            if 'fotoautor' in content:
+                fotoautor = content['fotoautor']
+                libro.fotoautor = fotoautor
                 nombrefotoautor = fotoautor.filename
                 libro.nombrefotoautor = nombrefotoautor
-                libro.rutafotoarchivo = os.path.abspath(nombrefotoautor)
+                libro.rutafotoautor = os.path.abspath(nombrefotoautor)
             session.add(libro)
         session.commit()
         return 'Update exitosa'
 
     @app.route('/actualizarconput')
     def update_put():
-
         return render_template('updatePut.html')
 
 

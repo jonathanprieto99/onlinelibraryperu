@@ -142,14 +142,14 @@ h1, h2, h3, h4, h5, h6, figure {
   font-size: 12px;
   padding: 30px 10px;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.5);
+  color: #979a9a;
   font-weight: 400 !important;
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s;
 }
 .gtco-nav ul li a:hover, .gtco-nav ul li a:focus, .gtco-nav ul li a:active {
-  color: #fff;
+  color: #31B0B4;
 }
 .gtco-nav ul li.has-dropdown {
   position: relative;
@@ -214,7 +214,7 @@ h1, h2, h3, h4, h5, h6, figure {
   color: #fff;
 }
 .gtco-nav ul li.btn-cta a {
-  color: #fff;
+  color: #979a9a;
 }
 .gtco-nav ul li.btn-cta a span {
   border: none !important;
@@ -237,7 +237,7 @@ h1, h2, h3, h4, h5, h6, figure {
   color: #fff;
 }
 .gtco-nav ul li.active > a {
-  color: #fff !important;
+  color: #979a9a !important;
 }
 .gtco-nav.scrolled {
   background: #fff;
@@ -278,7 +278,7 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 
 #gtco-hero .gtco-video-link a {
-  color: rgba(255, 255, 255, 0.5);
+  color: #979a9a;
 }
 #gtco-hero .gtco-video-link a i {
   font-size: 78px;
@@ -897,7 +897,7 @@ form label {
   transform: translateX(0px);
 }
 #gtco-offcanvas a {
-  color: rgba(255, 255, 255, 0.5);
+  color: #979a9a;
 }
 #gtco-offcanvas a:hover {
   color: rgba(255, 255, 255, 0.8);
@@ -1300,6 +1300,8 @@ form label {
     padding: 40px 40px;
     margin-top: 30px;
     margin: 0 auto;
+    background: #ffffff url(../images/geometry2.png) repeat;
+
 }
 
 .js .animate-box {

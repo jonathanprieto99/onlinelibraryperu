@@ -344,7 +344,7 @@ textarea {
 }
 
 a {
-  color: #337ab7;
+  color: #349B9E;
   text-decoration: none;
 }
 a:hover, a:focus {
@@ -574,7 +574,7 @@ mark,
 }
 
 .text-primary {
-  color: #337ab7;
+  color: #349B9E;
 }
 
 a.text-primary:hover,
@@ -623,7 +623,7 @@ a.text-danger:focus {
 }
 
 .bg-primary {
-  background-color: #337ab7;
+  background-color: #349B9E;
 }
 
 a.bg-primary:hover,
