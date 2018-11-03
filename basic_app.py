@@ -16,7 +16,7 @@ class ConfigClass(object):
     """ Flask application config """
 
     # Flask settings
-    SECRET_KEY = 'This is an INSECURE secret!! DO NOT use this in production!!'
+    SECRET_KEY = 'This is an INSECURE secret!! DO NOT use this in productio!!'
 
     # Flask-SQLAlchemy settings
     SQLALCHEMY_DATABASE_URI = 'sqlite:///basic_app.sqlite'  # File-based SQL database
@@ -116,7 +116,7 @@ def create_app():
 
 
 
-#Aquí empieza el código en realidad
+#Aqui empieza el codigo en realidad
     # The Home page is accessible to anyone
     @app.route('/')
     def home_page():
@@ -348,4 +348,4 @@ def create_app():
 # Start development web server
 if __name__ == '__main__':
     app = create_app()
-    app.run(port=5000, debug=True)
+    app.run(host='0.0.0.0', port=80, debug=False)
