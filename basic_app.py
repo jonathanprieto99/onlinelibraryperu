@@ -346,6 +346,6 @@ def create_app():
 
 
 # Start development web server
-if __name__ == '__main__':
+if __name__ == '__bassic_app__':
     app = create_app()
     app.run(port=5000, debug=False)
