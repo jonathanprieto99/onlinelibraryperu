@@ -352,4 +352,4 @@ def create_app():
 # Start development web server
 if __name__ == '__main__':
     app = create_app()
-    app.run(url='http://online-library-peru.herokuapp.com/', port=5000, debug=False)
+    app.run(host=('http://online-library-peru.herokuapp.com/'), port=5000, debug=False)
