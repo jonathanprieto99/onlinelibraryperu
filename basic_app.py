@@ -15,14 +15,6 @@ engine = db.createEngine()
 
 app = Flask(__name__)
 
-# Create Flask app load app.config
-app.config.from_object(__name__ + '.ConfigClass')
-
-# Initialize Flask-BabelEx
-babel = Babel(app)
-
-# Initialize Flask-SQLAlchemy
-db = SQLAlchemy(app)
 
 
 # Class-based application configuration
@@ -54,6 +46,15 @@ class ConfigClass(object):
 
 
 def create_app():
+
+    # Create Flask app load app.config
+    app.config.from_object(__name__ + '.ConfigClass')
+
+    # Initialize Flask-BabelEx
+    babel = Babel(app)
+
+    # Initialize Flask-SQLAlchemy
+    db = SQLAlchemy(app)
 
     # Define the User data-model.
     # NB: Make sure to add flask_user UserMixin !!!
