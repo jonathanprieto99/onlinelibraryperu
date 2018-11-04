@@ -11,6 +11,8 @@ import os
 db = connector.Manager()
 engine = db.createEngine()
 
+app = Flask(__name__)
+
 # Class-based application configuration
 class ConfigClass(object):
     """ Flask application config """
@@ -43,7 +45,6 @@ def create_app():
     """ Flask application factory """
 
     # Create Flask app load app.config
-    app = Flask(__name__)
     app.config.from_object(__name__ + '.ConfigClass')
 
     # Initialize Flask-BabelEx
