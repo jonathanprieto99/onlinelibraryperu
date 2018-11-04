@@ -11,7 +11,19 @@ import os
 db = connector.Manager()
 engine = db.createEngine()
 
+""" Flask application factory """
+
 app = Flask(__name__)
+
+# Create Flask app load app.config
+app.config.from_object(__name__ + '.ConfigClass')
+
+# Initialize Flask-BabelEx
+babel = Babel(app)
+
+# Initialize Flask-SQLAlchemy
+db = SQLAlchemy(app)
+
 
 # Class-based application configuration
 class ConfigClass(object):
@@ -42,16 +54,6 @@ class ConfigClass(object):
 
 
 def create_app():
-    """ Flask application factory """
-
-    # Create Flask app load app.config
-    app.config.from_object(__name__ + '.ConfigClass')
-
-    # Initialize Flask-BabelEx
-    babel = Babel(app)
-
-    # Initialize Flask-SQLAlchemy
-    db = SQLAlchemy(app)
 
     # Define the User data-model.
     # NB: Make sure to add flask_user UserMixin !!!
