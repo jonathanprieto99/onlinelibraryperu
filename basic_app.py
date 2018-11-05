@@ -11,16 +11,12 @@ import os
 db = connector.Manager()
 engine = db.createEngine()
 
-""" Flask application factory """
-
-app = Flask(__name__)
-
 # Class-based application configuration
 class ConfigClass(object):
     """ Flask application config """
 
     # Flask settings
-    SECRET_KEY = 'This is an INSECURE secret!! DO NOT use this in productio!!'
+    SECRET_KEY = 'This is an INSECURE secret!! DO NOT use this in production!!'
 
     # Flask-SQLAlchemy settings
     SQLALCHEMY_DATABASE_URI = 'sqlite:///basic_app.sqlite'  # File-based SQL database
@@ -44,8 +40,10 @@ class ConfigClass(object):
 
 
 def create_app():
+    """ Flask application factory """
 
     # Create Flask app load app.config
+    app = Flask(__name__)
     app.config.from_object(__name__ + '.ConfigClass')
 
     # Initialize Flask-BabelEx
@@ -118,7 +116,7 @@ def create_app():
 
 
 
-#Aqui empieza el codigo en realidad
+#Aquí empieza el código en realidad
     # The Home page is accessible to anyone
     @app.route('/')
     def home_page():
@@ -350,4 +348,4 @@ def create_app():
 # Start development web server
 if __name__ == '__main__':
     app = create_app()
-    app.run(host=('0.0.0.0'), port=5000, debug=False)
+    app.run(host='localhost', port=8080, debug=True)

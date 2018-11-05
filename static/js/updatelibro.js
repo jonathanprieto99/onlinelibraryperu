@@ -1,6 +1,5 @@
 $(function(){
-    var url = "0.0.0.0:5000/libros";
-
+    var url = "http://localhost:8080/libros";
 
     $("#grid").dxDataGrid({
         dataSource: DevExpress.data.AspNet.createStore({
