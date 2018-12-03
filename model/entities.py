@@ -1,6 +1,12 @@
 from sqlalchemy import Column, Integer, String, Sequence, LargeBinary,Boolean
 from database import connector
 
+class mobileUser(connector.Manager.Base):
+    __tablename__ = 'users'
+    id = Column(Integer, primary_key=True)
+    email = Column(String(255, collation='NOCASE'), nullable=False, unique=True)
+    password = Column(String(255), nullable=False, server_default='')
+
 class Libro(connector.Manager.Base):
     __tablename__ = 'libros'
     ID = Column(Integer, Sequence('libro_id_seq'), primary_key=True)

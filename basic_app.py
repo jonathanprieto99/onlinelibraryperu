@@ -7,6 +7,7 @@ from model import entities
 from database import connector
 import json
 import os
+from sqlalchemy import and_
 
 db = connector.Manager()
 engine = db.createEngine()
@@ -342,8 +343,38 @@ def create_app():
                                    cls=connector.AlchemyEncoder),
                         mimetype='application/json')
 
-    return app
+    @app.route('/mobile_login', methods=['POST'])
+    def mobile_login():
+        body = request.get_json(silent=True)
+        print(body)
+        email = body['email']
+        password = body['password']
+        sessiondb = session()
+        user = sessiondb.query(entities.mobileUser).filter(
+            and_(entities.mobileUser.email == email, entities.mobileUser.password == password)).first()
+        if user != None:
+            session['logged'] = user.id
+            return Response(json.dumps({'response': True, 'id': user.id}, cls=connector.AlchemyEncoder),
+                            mimetype='application/json')
+        else:
+            return Response(json.dumps({'response': False}, cls=connector.AlchemyEncoder), mimetype='application/json')
 
+    @app.route('/mobile_register', methods=['POST'])
+    def n_register():
+        register = db.getSession(engine)
+        email = request.form['email']
+        password = request.form['password']
+        print(email, password)
+
+        user = entities.User(email=email,
+                             password=password)
+
+        register.add(user)
+        register.commit()
+
+        return "OK!"
+
+    return app
 
 # Start development web server
 if __name__ == '__main__':
