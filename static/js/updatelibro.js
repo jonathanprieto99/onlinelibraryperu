@@ -1,7 +1,6 @@
 $(function(){
     var url = "http://localhost:8080/libros";
 
-
     $("#grid").dxDataGrid({
         dataSource: DevExpress.data.AspNet.createStore({
             key: "ID",
