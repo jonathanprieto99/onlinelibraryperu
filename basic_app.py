@@ -8,9 +8,13 @@ from database import connector
 import json
 import os
 from sqlalchemy import and_
+from sqlalchemy.orm import sessionmaker
 
 db = connector.Manager()
 engine = db.createEngine()
+
+session = sessionmaker()
+session.configure(bind=engine)
 
 # Class-based application configuration
 class ConfigClass(object):
@@ -353,26 +357,51 @@ def create_app():
         user = sessiondb.query(entities.mobileUser).filter(
             and_(entities.mobileUser.email == email, entities.mobileUser.password == password)).first()
         if user != None:
-            session['logged'] = user.id
             return Response(json.dumps({'response': True, 'id': user.id}, cls=connector.AlchemyEncoder),
                             mimetype='application/json')
         else:
             return Response(json.dumps({'response': False}, cls=connector.AlchemyEncoder), mimetype='application/json')
 
-    @app.route('/mobile_register', methods=['POST'])
-    def n_register():
-        register = db.getSession(engine)
+    @app.route('/mobile_register1', methods=['POST'])
+    def mobile_register1():
         email = request.form['email']
         password = request.form['password']
         print(email, password)
 
-        user = entities.User(email=email,
-                             password=password)
-
+        user = entities.mobileUser(email=email,
+                                   password=password)
+        register = db.Session(engine)
         register.add(user)
         register.commit()
+        return Response(json.dumps({'response': True}, cls=connector.AlchemyEncoder),
+                            mimetype='application/json')
 
-        return "OK!"
+
+    @app.route('/mobile_register', methods=['POST'])
+    def mobile_register():
+        body = request.get_json(silent=True)
+        print(body)
+        email = body['email']
+        password = body['password']
+        user = entities.mobileUser(email=email,
+                                   password=password)
+        register = db.Session(engine)
+        register.add(user)
+        register.commit()
+        return Response(json.dumps({'response': True}, cls=connector.AlchemyEncoder),
+                            mimetype='application/json')
+
+
+    @app.route('/mobile_libros', methods=['GET'])
+    def get_libros():
+        db_session = db.Session(engine)
+        libros = db_session.query(entities.user)
+        data = []
+        for libro in libros:
+            data.append(libro)
+        return Response(json.dumps({'data': data},
+                                   cls=connector.AlchemyEncoder),
+                        mimetype='application/json')
 
     return app
 
