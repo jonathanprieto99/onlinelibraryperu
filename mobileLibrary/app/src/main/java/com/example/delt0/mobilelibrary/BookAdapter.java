@@ -54,11 +54,11 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder>
     public void onBindViewHolder(@NonNull BookAdapter.ViewHolder holder, int position) {
         try {
             JSONObject element = elements.getJSONObject(position);
-            String name = element.getString("autor")+" - "+element.getString("genero");
-            final String username = element.getString("titulo");
+            String details = element.getString("autor")+" - "+element.getString("genero");
+            final String title = element.getString("titulo");
             final String id = element.getString("ID");
-            holder.first_line.setText(name);
-            holder.second_line.setText(username);
+            holder.first_line.setText(title);
+            holder.second_line.setText(details);
 
             holder.container.setOnClickListener(new View.OnClickListener(){
 

@@ -362,20 +362,6 @@ def create_app():
         else:
             return Response(json.dumps({'response': False}, cls=connector.AlchemyEncoder), mimetype='application/json')
 
-    @app.route('/mobile_register1', methods=['POST'])
-    def mobile_register1():
-        email = request.form['email']
-        password = request.form['password']
-        print(email, password)
-
-        user = entities.mobileUser(email=email,
-                                   password=password)
-        register = db.Session(engine)
-        register.add(user)
-        register.commit()
-        return Response(json.dumps({'response': True}, cls=connector.AlchemyEncoder),
-                            mimetype='application/json')
-
 
     @app.route('/mobile_register', methods=['POST'])
     def mobile_register():
@@ -395,9 +381,9 @@ def create_app():
     @app.route('/mobile_libros', methods=['GET'])
     def get_libros():
         db_session = db.Session(engine)
-        libros = db_session.query(entities.user)
+        libros = db_session.query(entities.Libro)
         data = []
-        for libro in libros:
+        for libro in li bros:
             data.append(libro)
         return Response(json.dumps({'data': data},
                                    cls=connector.AlchemyEncoder),
