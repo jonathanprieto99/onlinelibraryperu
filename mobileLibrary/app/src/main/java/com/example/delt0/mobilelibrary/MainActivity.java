@@ -48,11 +48,13 @@ public class MainActivity extends AppCompatActivity
         EditText txtUsername = (EditText) findViewById(R.id.txtUsername);
         EditText txtPassword = (EditText) findViewById(R.id.txtPassword);
 
-        String url = "http://10.0.2.2:8080/mobile_login";
+        //IMPORTANTE
+        //No se olviden de cambiar su puerto de acuerdo a su servidor (8080 o 5000)
+        String url = "http://10.0.2.2:5000/mobile_login";
         RequestQueue queue = Volley.newRequestQueue(this);
 
         Map<String, String> params = new HashMap();
-        params.put("username", txtUsername.getText().toString());
+        params.put("email", txtUsername.getText().toString());
         params.put("password", txtPassword.getText().toString());
 
         JSONObject parameters = new JSONObject(params);
@@ -69,10 +71,9 @@ public class MainActivity extends AppCompatActivity
                                     boolean ok = response.getBoolean("response");
                                     if (ok) {
                                         Intent intent = new Intent(getActivity(), BooksActivity.class);
-                                        intent.putExtra("user_id", response.getInt("id"));
                                         startActivity(intent);
                                     } else {
-                                        showMessage("Wrong Username or Password");
+                                        showMessage("Wrong Email or Password");
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -90,4 +91,10 @@ public class MainActivity extends AppCompatActivity
                         });
         queue.add(jsonObjectRequest);
     }
+
+    public void onClickBtnRegister(View v){
+        Intent intent = new Intent(getActivity(), RegisterActivity.class);
+        startActivity(intent);
+    }
+
 }
