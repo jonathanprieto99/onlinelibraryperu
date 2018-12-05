@@ -21,7 +21,9 @@
         </activity>
         <activity android:name=".BooksActivity" />
         <activity android:name=".BookAdapter" />
-        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".DisplayActivity" />
+        <activity android:name=".DisplayAdapter"></activity>
     </application>
 
 </manifest>

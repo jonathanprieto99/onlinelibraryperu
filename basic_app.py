@@ -189,6 +189,17 @@ def create_app():
         session.commit()
         return render_template('success.html')
 
+    @app.route('/libros', methods=['GET'])
+    @roles_required('Admin')
+    def libros():
+        db_session = db.Session(engine)
+        libros = db_session.query(entities.Libro)
+        data = []
+        for libro in libros:
+            data.append(libro)
+        return Response(json.dumps(data,
+                                   cls=connector.AlchemyEncoder),
+                        mimetype='application/json')
 
 
     @app.route('/libros', methods=['PUT'])
@@ -335,18 +346,6 @@ def create_app():
             break
         return Response(data[0].fotoautor, mimetype='image/png')
 
-    @app.route('/libros', methods=['GET'])
-    @roles_required('Admin')
-    def libros():
-        db_session = db.Session(engine)
-        libros = db_session.query(entities.Libro)
-        data = []
-        for libro in libros:
-            data.append(libro)
-        return Response(json.dumps(data,
-                                   cls=connector.AlchemyEncoder),
-                        mimetype='application/json')
-
     @app.route('/mobile_login', methods=['POST'])
     def mobile_login():
         body = request.get_json(silent=True)
@@ -383,11 +382,24 @@ def create_app():
         db_session = db.Session(engine)
         libros = db_session.query(entities.Libro)
         data = []
-        for libro in li bros:
+        for libro in libros:
             data.append(libro)
         return Response(json.dumps({'data': data},
                                    cls=connector.AlchemyEncoder),
                         mimetype='application/json')
+
+    @app.route('/mobile_libros/<ID>', methods=['GET'])
+    def mobile_libros_id(ID):
+        db_session = db.Session(engine)
+        libros = db_session.query(entities.Libro).filter(entities.Libro.ID == ID)
+        data = []
+        for libro in libros:
+            data.append(libro)
+            print(data)
+        return Response(json.dumps({'data': data},
+                                   cls=connector.AlchemyEncoder),
+                        mimetype='application/json')
+
 
     return app
 

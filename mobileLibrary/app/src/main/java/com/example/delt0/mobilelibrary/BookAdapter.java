@@ -63,12 +63,10 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder>
             holder.container.setOnClickListener(new View.OnClickListener(){
 
                 @Override
-                public void onClick(View v) {
-                    /*Intent goToMessage = new Intent(context,MessageActivity.class);
-                    goToMessage.putExtra("user_from_id",userFromId);
-                    goToMessage.putExtra("user_to_id",id);
-                    goToMessage.putExtra("username", username);
-                    context.startActivity(goToMessage);*/
+                public void onClick(View v) {Intent goToDisplay = new Intent(context,DisplayActivity.class);
+                    goToDisplay.putExtra("ID",id);
+                    goToDisplay.putExtra("titulo", title);
+                    context.startActivity(goToDisplay);
                 }
             });
 
