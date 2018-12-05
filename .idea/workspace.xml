@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f56625c7-ce3e-45c1-92ec-1b49b062041b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/onlinelibraryperu.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/onlinelibraryperu.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/basic_app.py" beforeDir="false" afterPath="$PROJECT_DIR$/basic_app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/midb.db" beforeDir="false" afterPath="$PROJECT_DIR$/midb.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileLibrary/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mobileLibrary/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileLibrary/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mobileLibrary/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileLibrary/app/src/main/java/com/example/delt0/mobilelibrary/BookAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/mobileLibrary/app/src/main/java/com/example/delt0/mobilelibrary/BookAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileLibrary/app/src/main/java/com/example/delt0/mobilelibrary/BooksActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/mobileLibrary/app/src/main/java/com/example/delt0/mobilelibrary/BooksActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileLibrary/app/src/main/java/com/example/delt0/mobilelibrary/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/mobileLibrary/app/src/main/java/com/example/delt0/mobilelibrary/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileLibrary/app/src/main/java/com/example/delt0/mobilelibrary/RegisterActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/mobileLibrary/app/src/main/java/com/example/delt0/mobilelibrary/RegisterActivity.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,7 +11,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/onlinelibraryperu$Server.coverage" NAME="Server Coverage Results" MODIFIED="1544039510471" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/onlinelibraryperu$Server.coverage" NAME="Server Coverage Results" MODIFIED="1544041402700" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FUSProjectUsageTrigger">
     <session id="-434668716">
@@ -71,12 +60,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="150" />
+          <entry key="py" value="180" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="150" />
+          <entry key="Python" value="180" />
         </counts>
       </usages-collector>
     </session>
@@ -95,8 +84,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/basic_app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="398" column="50" selection-start-line="398" selection-start-column="50" selection-end-line="398" selection-end-column="50" />
+            <state relative-caret-position="235">
+              <caret line="393" column="81" selection-start-line="393" selection-start-column="81" selection-end-line="393" selection-end-column="81" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -318,6 +307,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="820" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2532189" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -413,8 +403,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/basic_app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="398" column="50" selection-start-line="398" selection-start-column="50" selection-end-line="398" selection-end-column="50" />
+        <state relative-caret-position="235">
+          <caret line="393" column="81" selection-start-line="393" selection-start-column="81" selection-end-line="393" selection-end-column="81" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
