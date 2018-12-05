@@ -49,7 +49,7 @@ public class DisplayAdapter extends RecyclerView.Adapter<DisplayAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull DisplayAdapter.ViewHolder holder, int position) {
         try{
-            JSONObject element = elements.getJSONObject(position);
+            JSONObject element = elements.toJSONObject(elements);
             String descripcion = element.getString("descripcion");
             holder.myLine.setText("");
             holder.friendLine.setText(descripcion);

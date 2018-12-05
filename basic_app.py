@@ -395,7 +395,7 @@ def create_app():
         data = []
         for libro in libros:
             data.append(libro)
-            print(data)
+        print(data)
         return Response(json.dumps({'response': data},
                                    cls=connector.AlchemyEncoder),
                         mimetype='application/json')

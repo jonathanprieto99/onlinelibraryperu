@@ -53,7 +53,6 @@ public class DisplayActivity extends AppCompatActivity {
         String url = "http://10.0.2.2:8080/mobile_libros/<ID>";
         url = url.replace("<ID>", BookID);
         RequestQueue queue = Volley.newRequestQueue(this);
-
         JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.GET,
                 url,
