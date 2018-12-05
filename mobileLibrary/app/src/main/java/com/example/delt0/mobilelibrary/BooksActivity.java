@@ -50,7 +50,6 @@ public class BooksActivity extends AppCompatActivity
         RequestQueue queue = Volley.newRequestQueue(this);
         Map<String, String> params = new HashMap<>();
         JSONObject parameters = new JSONObject(params);
-        final String bookID = getIntent().getExtras().get("book_id").toString();
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET,
                 url,
@@ -60,7 +59,7 @@ public class BooksActivity extends AppCompatActivity
                     public void onResponse(JSONObject response) {
                         try {
                             JSONArray data = response.getJSONArray("data");
-                            mAdapter = new BookAdapter(data, getActivity(), bookID);
+                            mAdapter = new BookAdapter(data, getActivity(),"1");
                             mRecyclerView.setAdapter(mAdapter);
                         } catch (JSONException e) {
                             e.printStackTrace();

@@ -44,7 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             //IMPORTANTE
             //No se olviden de cambiar su puerto de acuerdo a su servidor (8080 o 5000)
-            String url = "http://10.0.2.2:5000/mobile_register";
+            String url = "http://10.0.2.2:8080/mobile_register";
             RequestQueue queue = Volley.newRequestQueue(this);
 
             Map<String, String> params = new HashMap();
