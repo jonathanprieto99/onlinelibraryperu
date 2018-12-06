@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -28,15 +29,19 @@ public class DisplayAdapter extends RecyclerView.Adapter<DisplayAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView friendLine;
-        TextView myLine;
+        TextView descripcionLine;
+        TextView autorLine;
+        TextView generoLine;
         RelativeLayout container;
+        //Button downloadButton;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            friendLine = itemView.findViewById(R.id.element_view_friend_line);
-            myLine = itemView.findViewById(R.id.element_view_me_line);
+            descripcionLine = itemView.findViewById(R.id.element_view_descripcion);
+            autorLine = itemView.findViewById(R.id.element_view_autor);
+            generoLine = itemView.findViewById(R.id.element_view_genero);
             container = itemView.findViewById(R.id.element_view_container);
+            //downloadButton = itemView.findViewById(R.id.download_btn);
         }
     }
 
@@ -58,11 +63,13 @@ public class DisplayAdapter extends RecyclerView.Adapter<DisplayAdapter.ViewHold
             JSONObject element = elements.getJSONObject(position);
 
             //Se extrae el elemento en específico que queremos (en este caso, la descripción)
-            String descripcion = element.getString("descripcion");
+            String descripcion = "Descripción: " + element.getString("descripcion");
             String autor = "Autor: " + element.getString("autor");
+            String genero = "Género: " + element.getString("genero");
             //Hacemos que un holder muestre a info que hemos sacado (la descripcion)
-            holder.friendLine.setText(autor);
-            holder.myLine.setText(descripcion);
+            holder.autorLine.setText(autor);
+            holder.generoLine.setText(genero);
+            holder.descripcionLine.setText(descripcion);
 
             /*El error que salta es:
             java.lang.NullPointerException: Attempt to invoke virtual method 'void android.widget.TextView.setText(java.lang.CharSequence)' on a null object reference
@@ -70,6 +77,7 @@ public class DisplayAdapter extends RecyclerView.Adapter<DisplayAdapter.ViewHold
             Al parecer, no se está recibiendo bien el jsonArray o el jsonObject en alguna de las instancias,
              por lo que al buscar "descripcion" este retorna un null (no hay)
             */
+
 
         }catch (JSONException e){
             e.printStackTrace();
