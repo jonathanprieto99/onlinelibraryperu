@@ -388,6 +388,7 @@ def create_app():
                                    cls=connector.AlchemyEncoder),
                         mimetype='application/json')
 
+
     @app.route('/mobile_libros/<ID>', methods=['GET'])
     def mobile_libros_id(ID):
         db_session = db.Session(engine)
@@ -396,7 +397,7 @@ def create_app():
         for libro in libros:
             data.append(libro)
         print(data)
-        return Response(json.dumps({'response': data},
+        return Response(json.dumps({'data': data},
                                    cls=connector.AlchemyEncoder),
                         mimetype='application/json')
 
