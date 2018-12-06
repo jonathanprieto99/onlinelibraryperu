@@ -49,10 +49,10 @@ public class DisplayActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        getChats();
+        getData();
     }
 
-    public void getChats() {
+    public void getData() {
         //Aquí se obtiene el ID del libro que queremos sacándolo del putExtra del BookAdapter
         final String ID = getIntent().getExtras().get("ID").toString();
 
