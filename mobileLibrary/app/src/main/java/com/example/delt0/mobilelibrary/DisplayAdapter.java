@@ -58,10 +58,11 @@ public class DisplayAdapter extends RecyclerView.Adapter<DisplayAdapter.ViewHold
             JSONObject element = elements.getJSONObject(position);
 
             //Se extrae el elemento en específico que queremos (en este caso, la descripción)
-            String mFirstLine = element.getString("descripcion");
-
+            String descripcion = element.getString("descripcion");
+            String autor = "Autor: " + element.getString("autor");
             //Hacemos que un holder muestre a info que hemos sacado (la descripcion)
-            holder.myLine.setText(mFirstLine);
+            holder.friendLine.setText(autor);
+            holder.myLine.setText(descripcion);
 
             /*El error que salta es:
             java.lang.NullPointerException: Attempt to invoke virtual method 'void android.widget.TextView.setText(java.lang.CharSequence)' on a null object reference
