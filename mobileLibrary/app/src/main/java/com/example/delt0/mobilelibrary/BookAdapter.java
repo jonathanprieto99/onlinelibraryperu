@@ -62,6 +62,8 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder>
              */
             JSONObject element = elements.getJSONObject(position);
             String details = element.getString("autor")+" - "+element.getString("genero");
+            final String autor = element.getString("autor");
+            final String genero = element.getString("genero");
             final String title = element.getString("titulo");
             final String id = element.getString("ID");
 
@@ -84,6 +86,8 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder>
 
                     //Se inicia la DisplayActivity
                     context.startActivity(goToDisplay);
+                    goToDisplay.putExtra(String url = "http://10.0.2.2:8080/archivo/<ID>");
+
                 }
                 //VER COMENTARIOS DEL DISPLAYACTIVITY ->
             });

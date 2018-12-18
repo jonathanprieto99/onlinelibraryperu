@@ -1,8 +1,5 @@
 package com.example.delt0.mobilelibrary;
 
-//PARTE 2
-//VER ANTES LOS COMENTARIOS DEL BOOKADAPTER
-
 import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,7 +27,7 @@ public class DisplayActivity extends AppCompatActivity {
     RecyclerView mRecyclerView;
     RecyclerView.Adapter mAdapter;
 
-    public Activity getActivity() {
+    public Activity getActivity(){
         return this;
     }
 
@@ -38,50 +35,35 @@ public class DisplayActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display);
-
-        //Aquí se obtiene el título del putExtra del BookAdapter y se pone como título
         String titulo = getIntent().getExtras().get("titulo").toString();
         setTitle(titulo);
         mRecyclerView = findViewById(R.id.main_recycler_view);
     }
 
     @Override
-    protected void onResume() {
+    protected void onResume(){
         super.onResume();
+
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         getData();
     }
 
-    public void getData() {
-        //Aquí se obtiene el ID del libro que queremos sacándolo del putExtra del BookAdapter
-        final String ID = getIntent().getExtras().get("ID").toString();
-
-        /*Aquí se está generando la url para pedir el json con los datos en específico de este libro
-        Para eso empleamos el ID que sacamos en la línea anterior
-         */
-        String url = "http://10.0.2.2:5000/mobile_libros/<ID>";
-        url = url.replace("<ID>", ID);
-
-        //Se usa la url para hacer una request al servidor: se pide el json del libro con la ID
+    public void getData(){
+        final String BookID = getIntent().getExtras().get("ID").toString();
+        String url = "http://10.0.2.2:8080/mobile_libros/<ID>";
+        url = url.replace("<ID>", BookID);
         RequestQueue queue = Volley.newRequestQueue(this);
         JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.GET,
                 url,
-                null, // Aquí está recibiendo la respuesta a la request (debería estar en formato jsonarray): los datos del libro
+                null,
                 new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(JSONObject response) { //<- ¿Por qué indican JSONObjecto y no JSONArray? Ni idea. Así estaba en el código del profe
+                    public void onResponse(JSONObject response) {
                         try {
-                            /*Del jsonObject obtenido se extrae el array que se encuentra bajo el
-                             label data (ese formato se especifica en el server
-                              */
-                            JSONArray data = response.getJSONArray("data");
-
-                            //Se conecta con el adaptador DisplayAdapter, pasando el array extraído como argumento
+                            JSONArray data = response.getJSONArray("response");
                             mAdapter = new DisplayAdapter(data, getActivity());
                             mRecyclerView.setAdapter(mAdapter);
-
-                            //PASAR A DISPLAYADAPTER ->
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -96,5 +78,4 @@ public class DisplayActivity extends AppCompatActivity {
         );
         queue.add(request);
     }
-
 }
