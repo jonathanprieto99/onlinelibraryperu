@@ -1,15 +1,15 @@
 $(function(){
-    var url = "http://localhost:8080/libros";
-
+    var url = "https://crm.zoho.com/crm/private/json/Leads/getRecords?authtoken=4f86a4c7e8f1b2505ff9ba5ae58f3c53&scope=crmapi&selectColumns=Leads(First Name,Last Name,Email)&version=1"; //Solo te manda el nombre, last name y el correo
+    //var myobj = JSON.parse();
     $("#grid").dxDataGrid({
         dataSource: DevExpress.data.AspNet.createStore({
-            key: "ID",
+            key: "no",
             loadUrl: url ,
             insertUrl: url ,
             updateUrl: url ,
             deleteUrl: url ,
             onBeforeSend: function(method, ajaxOptions) {
-                ajaxOptions.xhrFields = { withCredentials: true };
+                ajaxOptions.xhrFields = { withCredentials: false };//true
             }
         }),
         editing: {
@@ -22,26 +22,22 @@ $(function(){
             paging: true
         },
         paging: {
-            pageSize: 12
+            pageSize: 100
         },
         pager: {
             showPageSizeSelector: true,
-            allowedPageSizes: [8, 12, 20]
+            allowedPageSizes: [10, 20, 100]
         },
         columns: [{
-            dataField: "ID",
+            dataField: "no",
             dataType: "number",
             allowEditing: false
         }, {
-            dataField: "titulo"
+            dataField:"First Name"
         }, {
-            dataField: "autor"
+            dataField: "Last Name"
         }, {
-            dataField: "nacionalidad"
-        }, {
-            dataField: "genero"
-        }, {
-            dataField: "descripcion"
+            dataField: "Email"
         }, ],
     }).dxDataGrid("instance");
 });
