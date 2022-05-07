@@ -86,7 +86,8 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder>
 
                     //Se inicia la DisplayActivity
                     context.startActivity(goToDisplay);
-                    goToDisplay.putExtra(String url = "http://10.0.2.2:8080/archivo/<ID>");
+                    String url=null;
+                    goToDisplay.putExtra("http://http://127.0.0.1:5000/archivo/<ID>", url);
 
                 }
                 //VER COMENTARIOS DEL DISPLAYACTIVITY ->

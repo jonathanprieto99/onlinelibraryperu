@@ -50,7 +50,7 @@ public class DisplayActivity extends AppCompatActivity {
 
     public void getData(){
         final String BookID = getIntent().getExtras().get("ID").toString();
-        String url = "http://10.0.2.2:8080/mobile_libros/<ID>";
+        String url = "http://127.0.0.1:5000/mobile_libros/<ID>";
         url = url.replace("<ID>", BookID);
         RequestQueue queue = Volley.newRequestQueue(this);
         JsonObjectRequest request = new JsonObjectRequest(

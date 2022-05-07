@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity
 
         //IMPORTANTE
         //No se olviden de cambiar su puerto de acuerdo a su servidor (8080 o 5000)
-        String url = "http://10.0.2.2:8080/mobile_login";
+        String url = "http://127.0.0.1:5000/mobile_login";
         RequestQueue queue = Volley.newRequestQueue(this);
 
         Map<String, String> params = new HashMap();
